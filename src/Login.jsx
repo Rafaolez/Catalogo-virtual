@@ -1,34 +1,8 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import React from 'react'
-import {createTheme, ThemeProvider} from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import { common } from '@mui/material/colors';
 import { useNavigate, json } from 'react-router-dom';
-
-const theme = createTheme({
-    palette: {
-        mode: 'light',
-        primary: {
-          main: '#49536b',
-        },
-        secondary: {
-          main: '#ff0004',
-        },
-        background: {
-          default: '#d1dcf7',
-          paper: '#B1BFE6',
-        },
-        error: {
-          main: '#b71c1c',
-          light: '#d50000',
-          dark: '#d50000',
-          contrastText: '#a22121',
-        },
-        warning: {
-          main: '#bb5200',
-        },
-    }
-})
 
 function Login() {
 
@@ -39,6 +13,8 @@ function Login() {
     const [erro, setErro] = useState(false);
     const navigate = useNavigate();
 
+
+    /*Essa parte esta lendo e recebendo as informação, e rescrevendo em algum lugar, para fazer a ferificação  */ 
     useEffect(() => {
         if(login){
             localStorage.setItem("usuario" , JSON.stringify({email:email}));
@@ -47,9 +23,10 @@ function Login() {
             navigate("/");
         }
     }, [login] );
-
+    /*ja nessa parte ele esta vendo se as informação pasada pelo useEffect são verdadeira ou falso, se as infrmação tiver ele vai executar 
+    o if e else se der o erro 401 vai dar o aleti casso não vai pasar para outra tela  */ 
     function Autenticar(evento){
-        fetch("https://api.escuelajs.co/api/v1/auth/login", {
+        fetch("http://10.139.75.32:8080/login", {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json'
@@ -57,16 +34,16 @@ function Login() {
             body: JSON.stringify(
                 {
                     email: email,
-                    password: senha
+                    senha: senha
                 }
             )
         })
         .then((resposta) => resposta.json())
         .then((json) => {
-            if(json.statusCode === 401){
-                setErro(true);
-            }else {
+            if(json.user ){
                 setLogin(true);
+            }else {
+                setErro(true);
             }
         })
         .catch( (erro) => {setErro(true)} )
@@ -74,7 +51,7 @@ function Login() {
     }
 
     return (
-    <ThemeProvider theme={theme}>
+    
     <Container component="section" maxWidth="xs">
         <Box
          sx={{mt: 10, background: "#B1BFE6", 
@@ -85,6 +62,7 @@ function Login() {
             alignItems:"center",
           }}>
             <Typography component="h1" variant='h4'>Entrar</Typography>
+            {erro && ( <Alert variant="outlined" severity="warning">Revise seus dados e tente novamenete </Alert> )}
             <Box component="form" onSubmit={Autenticar}> 
                 <TextField 
                 type="email" 
@@ -120,7 +98,6 @@ function Login() {
             </Box>
         </Box>
     </Container>
-    </ThemeProvider>
   )
 }
 
