@@ -10,14 +10,14 @@ function Filme(){
         setCategorias(event.target.value);
     };
     const [ ano, setAno ] = useState("");
-    const [ duração, setDuração ] = useState("");
+    const [ duracao, setDuracao ] = useState("");
     const [img, setImg] = useState("");
     const [filmeExist, setFilmeexist] = useState(false);
     const [erro, setErro] = useState(false)
 
     function Filme(evento){
         evento.preventDefault();
-        fetch("http://10.139.75.32:8080/filmes", {
+        fetch( process.env.REACT_APP_BACKEND + "filmes", {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ function Filme(){
                     descricao: descricao,
                     categoria: categorias,
                     ano: ano,
-                    duracao: duração, 
+                    duracao: duracao, 
                     imagem: img,
                 }
             )
@@ -36,7 +36,7 @@ function Filme(){
         
         .then((resposta) => resposta.json())
         .then((json) => {
-            if(json.titulo){
+            if(json._id){
                 setFilmeexist(true);
                 setErro(false)
             }else{
@@ -51,7 +51,7 @@ function Filme(){
         setDescricao("");
         setCategorias("");
         setAno("");
-        setDuração("");
+        setDuracao("");
         setImg("");
         //setCadastro(false); 
     },  [filmeExist] );
@@ -67,8 +67,8 @@ function Filme(){
                 alignItems:"center",
             }}>
             <Typography component="h1" variant='h5'>Cadastro de Filme</Typography>
-            {erro &&( <Alert variant="outlined" severity="warning" sx={{mt:2, mb:2}}>Descupa e tenta novamente</Alert>)}
-            {filmeExist &&( <Alert variant="outlined" severity="success" sx={{mt:2, mb:2}}>Obrigado por se cadastrar</Alert>)}
+            {erro &&( <Alert variant="outlined" severity="warning" sx={{mt:2, mb:2}}>Filme já cadastrar. Tente novamente por favor!</Alert>)}
+            {filmeExist &&( <Alert variant="outlined" severity="success" sx={{mt:2, mb:2}}>Obrigado por cadastrar o seu filme !</Alert>)}
             <Box component="form" onSubmit={Filme}>
                 <TextField
                  type="text" 
@@ -119,8 +119,8 @@ function Filme(){
                  label=" Duração" 
                  variant="filled" 
                  margin="normal" 
-                value={duração}
-                onChange={(e) => setDuração(e.target.value)}
+                value={duracao}
+                onChange={(e) => setDuracao(e.target.value)}
                  fullWidth
                  required
                 />

@@ -26,7 +26,7 @@ function Login() {
     /*ja nessa parte ele esta vendo se as informação pasada pelo useEffect são verdadeira ou falso, se as infrmação tiver ele vai executar 
     o if e else se der o erro 401 vai dar o aleti casso não vai pasar para outra tela  */ 
     function Autenticar(evento){
-        fetch("http://10.139.75.32:8080/login", {
+        fetch(process.env.REACT_APP_BACKEND + "login", {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json'
