@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
+import { Alert, Avatar, Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { common } from '@mui/material/colors';
@@ -54,49 +54,51 @@ function Login() {
     
     <Container component="section" maxWidth="xs">
         <Box
-         sx={{mt: 10, background: "#B1BFE6", 
+         sx={{mt: 10, background: "rgba(217, 217, 217, 0.50)",
             padding:"50px", 
             borderRadius:"10px", 
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
           }}>
+            <Avatar  alt="Remy Sharp" sx={{ width: 100, height: 100 }} src='' />
+            <br/>
             <Typography component="h1" variant='h4'>Entrar</Typography>
             {erro && ( <Alert variant="outlined" severity="warning">Revise seus dados e tente novamenete </Alert> )}
             <Box component="form" onSubmit={Autenticar}> 
-                <TextField 
-                type="email" 
-                label="Email" 
-                variant="filled" 
-                margin="normal" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                fullWidth
-                />
-                <TextField 
+            <TextField 
+            id="standard-basic"
+            label="Email" 
+            variant="standard" 
+            margin="normal"
+            type="email"  
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+             />
+            <TextField 
+                id="standard-basic"
                 type="password"
                 label="Senha"
-                variant="filled"
+                variant="standard"
                 margin="normal" 
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
                 fullWidth 
-                  />
+            />
                 <FormControlLabel
                     control={<Checkbox value={lembrar} name="lembrar" onChange={(e) => setLembrar( !lembrar )}/> }
                     label="Lembrar-me"
                 />
-                <Button type="submit" variant="contained" fullWidth sx={{mt: 2, mb: 2}} >Login</Button>
+                <Button type="submit" variant="outlined" fullWidth sx={{mt: 2, mb: 2}} >Login</Button>
                 <Grid container>
-                    <Grid item xs>
-                        Esqueci a senha
-                    </Grid>
                     <Grid item>
-                        Casdastrar
+                        <a  href="http://localhost:3000/cadastro">Cadastro</a>
                     </Grid>
                 </Grid>
             </Box>
         </Box>
+        
     </Container>
   )
 }

@@ -52,7 +52,7 @@ function Cadastro() {
 
   return (
     <Container component="section" maxWidth="sm">
-        <Box sx={{mt: 10, background: "#B1BFE6", 
+        <Box sx={{mt: 10, background: "#D9D9D9", 
             padding:"60px", 
             borderRadius:"10px", 
             display: "flex",
@@ -68,7 +68,7 @@ function Cadastro() {
             <TextField
                 type="text" 
                 label=" nome " 
-                variant="filled" 
+                variant="standard" 
                 margin="normal" 
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
@@ -78,7 +78,7 @@ function Cadastro() {
                 <TextField
                 type="email" 
                 label="Email" 
-                variant="filled" 
+                variant="standard" 
                 margin="normal" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +88,7 @@ function Cadastro() {
                 <TextField 
                 type="text"
                 label=" CPF"
-                variant="filled"
+                variant="standard"
                 margin="normal" 
                 value={cpf}
                 onChange={(e) => setCpf(e.target.value)}
@@ -98,7 +98,7 @@ function Cadastro() {
                 <TextField
                 type="tel" 
                 label="Telefone" 
-                variant="filled" 
+                variant="standard" 
                 margin="normal" 
                 value={telefone}
                 onChange={(e) => setTel(e.target.value)}
@@ -108,7 +108,7 @@ function Cadastro() {
                 <TextField 
                 type="password"
                 label="Senha"
-                variant="filled"
+                variant="standard"
                 margin="normal" 
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
@@ -120,7 +120,7 @@ function Cadastro() {
                     label="Li e comcordo com os termo"
                     required
                 />
-                <Button type="submit" variant="contained" fullWidth sx={{mt: 2, mb: 2}}> Cadastrar-se</Button>
+                <Button type="submit" variant="outlined " fullWidth sx={{mt: 2, mb: 2}}> Cadastrar-se</Button>
             </Box>
         </Box>
     </Container>
