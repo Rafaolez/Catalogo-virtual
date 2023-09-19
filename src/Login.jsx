@@ -3,9 +3,10 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { common } from '@mui/material/colors';
 import { useNavigate, json } from 'react-router-dom';
+import stile from "./components/css/login.module.css"
 
 function Login() {
-
+   
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [lembrar, setLembrar] = useState(false);
@@ -51,15 +52,19 @@ function Login() {
     }
 
     return (
-    
+    <>
+    <div className= {stile.img}></div>
     <Container component="section" maxWidth="xs">
         <Box
          sx={{mt: 10, background: "rgba(217, 217, 217, 0.50)",
             padding:"50px", 
-            borderRadius:"10px", 
+            borderRadius:"41px", 
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
+            height: '35rem',
+            width:"31rem",
+            marginLeft: '-6rem',
           }}>
             <Avatar  alt="Remy Sharp" sx={{ width: 100, height: 100 }} src='' />
             <br/>
@@ -92,15 +97,20 @@ function Login() {
                 />
                 <Button type="submit" variant="outlined" fullWidth sx={{mt: 2, mb: 2}} >Login</Button>
                 <Grid container>
-                    <Grid item>
+                    <Grid item xs={6}>
                         <a  href="http://localhost:3000/cadastro">Cadastro</a>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <a  href="http://localhost:3000/">Voltar</a>
                     </Grid>
                 </Grid>
             </Box>
         </Box>
         
     </Container>
+    </>
   )
+  
 }
 
 export default Login

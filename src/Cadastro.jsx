@@ -8,6 +8,7 @@ function Cadastro() {
     const [nome, setNome] = useState("");
     const [telefone, setTel] = useState("");
     const [cpf, setCpf] = useState("");
+    const [img , setImg] = useState("");
     const [cadastro, setCadastro] = useState(false)
     const [erro, setErro] = useState(false)
     const [LI, setLembrar] = useState(false);
@@ -51,13 +52,14 @@ function Cadastro() {
     },  [cadastro] );
 
   return (
+        <>
     <Container component="section" maxWidth="sm">
-        <Box sx={{mt: 10, background: "#D9D9D9", 
+        <Box sx={{mt: 5, background: "#D9D9D9", 
             padding:"60px", 
             borderRadius:"10px", 
             display: "flex",
             flexDirection:"column",
-            alignItems:"center",
+            alignItems:"center",         
           }}>
             <Typography component="h1" variant='h4'>Cadastro</Typography>
 
@@ -115,15 +117,26 @@ function Cadastro() {
                 fullWidth 
                 required
                   />
+                <TextField
+                type="ulr" 
+                label=" Insira uma LInk de uma imagem de perfil" 
+                variant="standard" 
+                margin="normal" 
+                value={img}
+                onChange={(e) => setImg(e.target.value)}
+                fullWidth
+                />
                 <FormControlLabel
                     control={<Checkbox value={LI} name="lembrar" onChange={(e) => setLembrar( !LI )}/> }
                     label="Li e comcordo com os termo"
                     required
                 />
-                <Button type="submit" variant="outlined " fullWidth sx={{mt: 2, mb: 2}}> Cadastrar-se</Button>
+                <Button type="submit" variant="outlined" fullWidth sx={{mt: 2, mb: 2}}> Cadastrar-se</Button>
             </Box>
         </Box>
     </Container>
+    
+    </>
   )
 }
 

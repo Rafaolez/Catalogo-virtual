@@ -7,30 +7,24 @@ import Login from './Login';
 import Cadastro from "./Cadastro"
 import Filme from "./Filme"
 import EditaFilme from './EditaFilme';
+import CadastroCasa from './CadastroCasa';
 
 const theme = createTheme({
   palette: {
-      mode: 'light',
-      primary: {
-        main: '#49536b',
-      },
-      secondary: {
-        main: '#ff0004',
-      },
-      background: {
-        default: '#d1dcf7',
-        paper: '#B1BFE6',
-      },
-      error: {
-        main: '#b71c1c',
-        light: '#d50000',
-        dark: '#d50000',
-        contrastText: '#a22121',
-      },
-      warning: {
-        main: '#bb5200',
-      },
-  }
+    mode: 'light',
+    primary: {
+      main: '#000000',
+      contrastText: '#ffffff',
+    },
+    secondary: {
+      main: '#393939',
+    },
+    background: {
+      default: '#f5ecdc',
+      paper: '#d9d9d9',
+    },
+    divider: '#f5ecdc',
+  },
 })
 
  const router = createBrowserRouter([
@@ -53,6 +47,10 @@ const theme = createTheme({
   {
     path: "/editarfilme/:id",
     element: <EditaFilme/>
+  },
+  {
+    path: "/CasdastroCasa",
+    element: <CadastroCasa/>
   }
  ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));

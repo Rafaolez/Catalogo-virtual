@@ -1,0 +1,14 @@
+body{
+    /*background-image: url("img/Logo.png");
+    background-repeat: no-repeat;   
+    background-size: 50% auto;
+    background-position: center center;*/
+    background-color: #F5ECDC;
+    
+    
+}
+html, body, nav, ul, li, a {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
