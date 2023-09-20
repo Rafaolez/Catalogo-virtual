@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './Login';
 import Cadastro from "./Cadastro"
 import Filme from "./Filme"
-import EditaFilme from './EditaFilme';
+import EditaFilme from './EditaCasa';
 import CadastroCasa from './CadastroCasa';
 
 const theme = createTheme({

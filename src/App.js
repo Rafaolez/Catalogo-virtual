@@ -1,6 +1,6 @@
 import { Avatar, Button, Container, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
-import Filmes from "./components/Filme";
+import Filmes from "./components/casa";
 import MenuResponsivoo from "./components/MenuResponsivoo";
 import  "./components/css/cssDoAPp.module.css"
 
