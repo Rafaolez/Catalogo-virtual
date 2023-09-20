@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Container, FormControl, InputLabel, MenuItem, Select, TextField, Typography, Rating, Grid } from '@mui/material'
+import { Alert, Box, Button, Container,  TextField, Typography, Rating, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
@@ -6,10 +6,9 @@ function EditaFilme() {
 
     const {id} = useParams();
 
-
-    const [nomefilme, setNfilme] = useState("");
+    const [nomecasa, setNomecasa] = useState("");
     const [ descricao, setDescricao] = useState("");
-    const [ categorias, setCategorias ] = useState("");
+  
     const[estrela, setEstrela] = useState("");
     const [ ano, setAno ] = useState("");
     const [ duracao, setDuracao ] = useState("");
@@ -28,7 +27,7 @@ function EditaFilme() {
         .then((resposta) => resposta.json())
         .then((json) => {
             if (!json.status){
-            setNfilme(json.titulo);
+            setNomecasa(json.titulo);
             setDescricao(json.descricao);
             setAno(json.ano);
             setEstrela(json.categoria);
@@ -53,7 +52,7 @@ function EditaFilme() {
             body: JSON.stringify(
                 {
                     id : id,
-                    titulo: nomefilme,
+                    titulo: nomecasa,
                     descricao: descricao,
                     categoria: estrela,
                     ano: ano,
@@ -97,8 +96,8 @@ function EditaFilme() {
                  label="Endereço" 
                  variant="standard" 
                  margin="normal" 
-                value={nomefilme}
-                onChange={(e) => setNfilme(e.target.value)}
+                value={nomecasa}
+                onChange={(e) => setNomecasa(e.target.value)}
                  fullWidth
                  required
                 />

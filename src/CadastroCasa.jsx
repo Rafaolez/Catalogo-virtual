@@ -1,15 +1,12 @@
-import { Box, Button, Container, Rating, InputLabel, Select, TextField, Typography, Alert, Grid } from '@mui/material'
-import React   from 'react'
+import { Box, Button, Container, Rating,  TextField, Typography, Alert, Grid } from '@mui/material'
 import { useState, useEffect } from 'react';
 import MenuResponsivoo from './components/MenuResponsivoo';
  
 function CadastroCasa(){
     const [nomefilme, setNfilme] = useState("");
     const [ descricao, setDescricao] = useState("");
-    const [ categorias, setCategorias ] = useState("");
-    const handleChange = (event) => {
-        setCategorias(event.target.value);
-    };
+    const [ , setCategorias ] = useState("");
+   
     const [ ano, setAno ] = useState("");
     const [ duracao, setDuracao ] = useState("");
     const [img, setImg] = useState("");
@@ -143,7 +140,6 @@ function CadastroCasa(){
             <Grid item xs={6}>
                 <a  href="http://localhost:3000/" style={{ textDecoration: ' none', color: ' black' }}>Voltar</a>
             </Grid>
-            
         </Box>
     </Container>
     </>
