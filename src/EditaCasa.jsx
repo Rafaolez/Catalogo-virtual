@@ -8,7 +8,6 @@ function EditaFilme() {
 
     const [nomecasa, setNomecasa] = useState("");
     const [ descricao, setDescricao] = useState("");
-  
     const[estrela, setEstrela] = useState("");
     const [ ano, setAno ] = useState("");
     const [ duracao, setDuracao ] = useState("");
