@@ -1,6 +1,7 @@
-import { Box, Button, Container, Rating, InputLabel, Select, TextField, Typography, Alert } from '@mui/material'
+import { Box, Button, Container, Rating, InputLabel, Select, TextField, Typography, Alert, Grid } from '@mui/material'
 import React   from 'react'
 import { useState, useEffect } from 'react';
+import MenuResponsivoo from './components/MenuResponsivoo';
  
 function CadastroCasa(){
     const [nomefilme, setNfilme] = useState("");
@@ -20,7 +21,7 @@ function CadastroCasa(){
 
     function Filme(evento){
         evento.preventDefault();
-        fetch( process.env.REACT_APP_BACKEND + "filmes", {
+        fetch( process.env.REACT_APP_BACKEND + "produtos", {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json'
@@ -29,10 +30,11 @@ function CadastroCasa(){
                 {
                     titulo: nomefilme,
                     descricao: descricao,
-                    categoria: categorias,
+                    categoria: estrela,
                     ano: ano,
                     duracao: duracao, 
                     imagem: img,
+                    usuario: localStorage.getItem("usuario")
                 }
             )
         })
@@ -60,6 +62,8 @@ function CadastroCasa(){
     },  [filmeExist] );
 
   return (
+    <>
+    <MenuResponsivoo/>
     <Container>
         <Box
             sx={{mt: 10, background: "#D9D9D9", 
@@ -136,8 +140,13 @@ function CadastroCasa(){
                 />
                 <Button type="submit" variant="outlined" fullWidth sx={{mt: 2, mb: 2}}>Cadastra-se</Button>
             </Box>
+            <Grid item xs={6}>
+                <a  href="http://localhost:3000/" style={{ textDecoration: ' none', color: ' black' }}>Voltar</a>
+            </Grid>
+            
         </Box>
     </Container>
+    </>
   )
 }
 

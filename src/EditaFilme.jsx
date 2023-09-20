@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Container, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Container, FormControl, InputLabel, MenuItem, Select, TextField, Typography, Rating, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
@@ -10,9 +10,7 @@ function EditaFilme() {
     const [nomefilme, setNfilme] = useState("");
     const [ descricao, setDescricao] = useState("");
     const [ categorias, setCategorias ] = useState("");
-    const handleChange = (event) => {
-        setCategorias(event.target.value);
-    };
+    const[estrela, setEstrela] = useState("");
     const [ ano, setAno ] = useState("");
     const [ duracao, setDuracao ] = useState("");
     const [img, setImg] = useState("");
@@ -20,7 +18,8 @@ function EditaFilme() {
     const [erro, setErro] = useState(false)
 
     useEffect(() => {
-        fetch( process.env.REACT_APP_BACKEND + "filmes/" + id, {
+        const usuario = localStorage.getItem("usuario")
+        fetch( process.env.REACT_APP_BACKEND + "produtos/"+ usuario + "/" + id, {
             method: "GET", 
             headers: {
                 'Content-Type': 'application/json'
@@ -32,11 +31,11 @@ function EditaFilme() {
             setNfilme(json.titulo);
             setDescricao(json.descricao);
             setAno(json.ano);
-            setCategorias(json.categoria);
+            setEstrela(json.categoria);
             setDuracao(json.duracao);
             setImg(json.imagem);
             }else{
-                setErro("FIlme não encontrado ");
+                setErro("Casa não encontrado ");
             }
             
         })
@@ -46,7 +45,7 @@ function EditaFilme() {
 
     function Editar(evento){
         evento.preventDefault();
-        fetch( process.env.REACT_APP_BACKEND + "filmes", {
+        fetch( process.env.REACT_APP_BACKEND + "produtos", {
             method: "PUT", 
             headers: {
                 'Content-Type': 'application/json'
@@ -56,10 +55,11 @@ function EditaFilme() {
                     id : id,
                     titulo: nomefilme,
                     descricao: descricao,
-                    categoria: categorias,
+                    categoria: estrela,
                     ano: ano,
                     duracao: duracao, 
                     imagem: img,
+                    usuario: localStorage.getItem("usuario")
                 }
             )
         })
@@ -79,23 +79,23 @@ function EditaFilme() {
 
   return (
     <Container>
-        <Box sx={{mt: 10, background: "#B1BFE6", 
+        <Box sx={{mt: 10, background: "rgba(217, 217, 217, 0.50)", 
             padding:"60px", 
             borderRadius:"10px", 
             display: "flex",
             flexDirection:"column",
             alignItems:"center",
           }}>
-            <Typography component="h1" variant='h4'>Editar FIlme</Typography>
+            <Typography component="h1" variant='h4'>Editar Casa</Typography>
             {erro && ( <Alert severity='warning'>{erro}</Alert>)}
-            {edita && (<Alert severity='success'>Filme editado com sucesso</Alert>)}
+            {edita && (<Alert severity='success'>Casa editado com sucesso</Alert>)}
             <Box component="form" onSubmit={Editar}>
-            <Typography component="h1" variant='h5'>Cadastro de Filme</Typography>
+            
 
                 <TextField
                  type="text" 
-                 label=" nome do filme" 
-                 variant="filled" 
+                 label="Endereço" 
+                 variant="standard" 
                  margin="normal" 
                 value={nomefilme}
                 onChange={(e) => setNfilme(e.target.value)}
@@ -104,32 +104,26 @@ function EditaFilme() {
                 />
                 <TextField
                  type="text" 
-                 label=" Descrição do Filme" 
-                 variant="filled" 
+                 label=" Descrição" 
+                 variant="standard" 
                  margin="normal" 
                 value={descricao}
                 onChange={(e) => setDescricao(e.target.value)}
                  fullWidth
                  required
                 />
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Categoria</InputLabel>
-                    <Select labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={categorias}
-                            label="Categoria"
-                            onChange={handleChange}
-                        >
-                         <MenuItem value={10} >Ação</MenuItem>
-                        <MenuItem value={20} >Terror</MenuItem>
-                        <MenuItem value={30} >Suspence</MenuItem>
-                        
-                    </Select>    
-                </FormControl>
+                <Typography component="legend" sx={{mt: 5}}>Qualidade</Typography>
+                <Rating
+                    name="simple-controlled"
+                    value={estrela}
+                    onChange={(event, newValue) => {
+                    setEstrela(newValue);
+                    }}
+                />
                 <TextField
                  type="dat" 
                  label=" Ano" 
-                 variant="filled" 
+                 variant="standard" 
                  margin="normal" 
                 value={ano}
                 onChange={(e) => setAno(e.target.value)}
@@ -139,7 +133,7 @@ function EditaFilme() {
                 <TextField
                  type="dat" 
                  label=" Duração" 
-                 variant="filled" 
+                 variant="standard" 
                  margin="normal" 
                 value={duracao}
                 onChange={(e) => setDuracao(e.target.value)}
@@ -149,7 +143,7 @@ function EditaFilme() {
                 <TextField
                  type="ulr" 
                  label=" Insira uma LInk de uma imagem do filme" 
-                 variant="filled" 
+                 variant="standard" 
                  margin="normal" 
                 value={img}
                 onChange={(e) => setImg(e.target.value)}
@@ -158,6 +152,9 @@ function EditaFilme() {
                 />
                 <Button  type="submit" variant="contained" fullWidth sx={{mt: 2, mb: 2}}> Editar</Button>
         </Box>
+        <Grid item xs={6}>
+                <a  href="http://localhost:3000/" style={{ textDecoration: ' none', color: ' black' }}>Voltar</a>
+            </Grid>
         </Box>
     </Container>
   )

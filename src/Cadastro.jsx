@@ -1,4 +1,4 @@
-import { Box, Container,  FormControlLabel, TextField, Checkbox, Button, Typography, Alert } from '@mui/material'
+import { Box, Container,  FormControlLabel, TextField, Checkbox, Button, Typography, Alert, Grid } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react';
 
@@ -15,7 +15,7 @@ function Cadastro() {
 
     function Cadastro(evento){
         evento.preventDefault();
-        fetch(process.env.REACT_APP_BACKEND + "users", {
+        fetch(process.env.REACT_APP_BACKEND + "usuarios", {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json'
@@ -133,6 +133,9 @@ function Cadastro() {
                 />
                 <Button type="submit" variant="outlined" fullWidth sx={{mt: 2, mb: 2}}> Cadastrar-se</Button>
             </Box>
+            <Grid item >
+                        <a  href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' black' }}>Voltar</a>
+                    </Grid>
         </Box>
     </Container>
     

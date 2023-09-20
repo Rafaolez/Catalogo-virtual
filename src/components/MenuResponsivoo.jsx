@@ -1,6 +1,8 @@
 import { AppBar, Box, Container, IconButton, Menu, MenuItem, Toolbar, Typography, Button, Tooltip, Avatar  } from "@mui/material"
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import img from "./img/LogoBranco.png"
+import stile from "./css/menu.module.css"
 
 const pages = ['Casateste', 'casateste2', 'casatest4'];
 const settings = ['Perfil', 'test', 'test6', 'test2'];
@@ -45,7 +47,7 @@ function MenuResponsivoo() {
                   textDecoration: 'none',
                 }}
                 >
-                    Logo
+                    <img src={img} alt="Logo" className={stile.img} />
                 </Typography>
                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
@@ -78,13 +80,13 @@ function MenuResponsivoo() {
             >
               
                 <MenuItem  onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center"><a href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' white' }}>Teste1</a></Typography>
+                  <Typography textAlign="center"><a href="http://localhost:3000/CasdastroCasa" style={{ textDecoration: ' none', color: ' white' }}>Cadastrar Casa</a></Typography>
                 </MenuItem>
                 <MenuItem  onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center"><a href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' white' }}>Teste2</a></Typography>
+                  <Typography textAlign="center"><a href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' white' }}>Logar</a></Typography>
                 </MenuItem>
                 <MenuItem  onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center"><a href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' white' }}>Teste3</a></Typography>
+                  <Typography textAlign="center"><a href="http://localhost:3000/cadastro" style={{ textDecoration: ' none', color: ' white' }}>Cadastro</a></Typography>
                 </MenuItem>
             
             </Menu>
@@ -112,19 +114,13 @@ function MenuResponsivoo() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <a href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' white' }}>Teste1</a>
+                <a href="http://localhost:3000/CasdastroCasa" style={{ textDecoration: ' none', color: ' white' }}>Cadastrar Casa</a>
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <a href="http://localhost:3000/cadastro" style={{ textDecoration: ' none', color: ' white' }}>Teste2</a>
-              </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <a href="http://localhost:3000/filme" style={{ textDecoration: ' none', color: ' white' }}>Teste3</a>
+                <a href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' white' }}>sair</a>
               </Button>
           </Box>
 
@@ -152,13 +148,13 @@ function MenuResponsivoo() {
             >
               
                 <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center"><a href="http://localhost:3000/filme" style={{ textDecoration: ' none', color: ' white' }}>Perfil</a></Typography>
+                  <Typography textAlign="center"><a href="http://localhost:3000/" style={{ textDecoration: ' none', color: ' white' }}>Perfil</a></Typography>
                 </MenuItem>
                 <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center"><a href="http://localhost:3000/filme" style={{ textDecoration: ' none', color: ' white' }}>Adicionar novo local</a></Typography>
+                  <Typography textAlign="center"><a href="http://localhost:3000/CasdastroCasa" style={{ textDecoration: ' none', color: ' white' }}>Adicionar novo local</a></Typography>
                 </MenuItem>
                 <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center"><a href="http://localhost:3000/filme" style={{ textDecoration: ' none', color: ' white' }}>Sair</a></Typography>
+                  <Typography textAlign="center"><a href="http://localhost:3000/login" style={{ textDecoration: ' none', color: ' white' }}>Sair</a></Typography>
                 </MenuItem>
   
             </Menu>

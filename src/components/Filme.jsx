@@ -1,5 +1,7 @@
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material'
 import React from 'react'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import CreateIcon from '@mui/icons-material/Create';
 
 function Filme(props) {
   return (
@@ -20,10 +22,10 @@ function Filme(props) {
                     {props.descricao}
                 </Typography>
                 <Grid container>
-                    <Grid item xs={4 }>
-                        <span>{props.categoria}</span>
+                    <Grid item xs={10 }>
+                        <span>{props.estrela}</span>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={5}>
                         <span>{props.ano}</span>
                     </Grid>
                     <Grid item xs={4}>
@@ -32,12 +34,10 @@ function Filme(props) {
                 </Grid>
             </CardContent>
         </CardActionArea>
-        <Grid item xs={6}>
-            <button onClick={props.escluir}>x</button>
+        <Grid item >
+            <DeleteForeverIcon onClick={props.escluir} />
+            <Link href={"editarfilme/" + props.id} ><CreateIcon/></Link>
         </Grid>
-        <Grid item xs={6}>
-            <Link href={"editarfilme/" + props.id} >Editar</Link>
-        </Grid> 
     </Card>
   )
 }

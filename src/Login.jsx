@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { common } from '@mui/material/colors';
 import { useNavigate, json } from 'react-router-dom';
-import stile from "./components/css/login.module.css"
+import "./login.module.css"
 
 function Login() {
    
@@ -18,7 +18,6 @@ function Login() {
     /*Essa parte esta lendo e recebendo as informação, e rescrevendo em algum lugar, para fazer a ferificação  */ 
     useEffect(() => {
         if(login){
-            localStorage.setItem("usuario" , JSON.stringify({email:email}));
             setEmail("");
             setSenha("");
             navigate("/");
@@ -26,6 +25,7 @@ function Login() {
     }, [login] );
     /*ja nessa parte ele esta vendo se as informação pasada pelo useEffect são verdadeira ou falso, se as infrmação tiver ele vai executar 
     o if e else se der o erro 401 vai dar o aleti casso não vai pasar para outra tela  */ 
+    
     function Autenticar(evento){
         fetch(process.env.REACT_APP_BACKEND + "login", {
             method: "POST", 
@@ -42,8 +42,10 @@ function Login() {
         .then((resposta) => resposta.json())
         .then((json) => {
             if(json.user ){
+                localStorage.setItem("usuario" , JSON.stringify(json.user._id ));
                 setLogin(true);
             }else {
+                localStorage.removeItem("usuario");
                 setErro(true);
             }
         })
@@ -52,9 +54,9 @@ function Login() {
     }
 
     return (
-    <>
-    <div className= {stile.img}></div>
-    <Container component="section" maxWidth="xs">
+    <> 
+    
+    <Container component="section" maxWidth="xs" >
         <Box
          sx={{mt: 10, background: "rgba(217, 217, 217, 0.50)",
             padding:"50px", 
@@ -98,10 +100,10 @@ function Login() {
                 <Button type="submit" variant="outlined" fullWidth sx={{mt: 2, mb: 2}} >Login</Button>
                 <Grid container>
                     <Grid item xs={6}>
-                        <a  href="http://localhost:3000/cadastro">Cadastro</a>
+                        <a  href="http://localhost:3000/cadastro" style={{ textDecoration: ' none', color: ' black' }}>Cadastro</a>
                     </Grid>
                     <Grid item xs={6}>
-                        <a  href="http://localhost:3000/">Voltar</a>
+                        <a  href="http://localhost:3000/" style={{ textDecoration: ' none', color: ' black' }}>Voltar</a>
                     </Grid>
                 </Grid>
             </Box>
